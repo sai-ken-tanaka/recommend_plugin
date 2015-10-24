@@ -53,7 +53,7 @@ class RecommendController extends AbstractController
     {
         $pagination = null;
 
-        $pagination = $app['eccube.plugin.recommend.repository.recommend_product']->findAll();
+        $pagination = $app['eccube.plugin.recommend.repository.recommend_product']->findList();
 
         return $app->render('Recommend/View/admin/index.twig', array(
             'pagination' => $pagination,
@@ -124,11 +124,14 @@ class RecommendController extends AbstractController
         $service = $app['eccube.plugin.recommend.service.recommend'];
 
         // IDからおすすめ商品情報を取得する
-        $Recommend = $app['eccube.plugin.recommend.repository.recommend_product']->find($id);
+        $Recommend = $app['eccube.plugin.recommend.repository.recommend_product']->findById($id);
+
         if (is_null($Recommend)) {
             $app->addError('admin.recommend.notfound', 'admin');
             return $app->redirect($app->url('admin_recommend_list'));
         }
+
+		$Recommend = $Recommend[0];
 
         // formの作成
         $form = $app['form.factory']
@@ -180,7 +183,6 @@ class RecommendController extends AbstractController
         }
 
 
-        $form = $app['form.factory']->createBuilder('admin_recommend_search')->getForm();
         $service = $app['eccube.plugin.recommend.service.recommend'];
 
         // おすすめ商品情報を削除する

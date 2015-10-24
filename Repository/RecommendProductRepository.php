@@ -40,12 +40,13 @@ class RecommendProductRepository extends EntityRepository
 {
 
     /**
-    * find all
+    * find list
     *
     * @return type
     */
-    public function findAll()
+    public function findList()
     {
+
         $qb = $this->createQueryBuilder('rp')
             ->select('rp, p')
             ->innerJoin('rp.Product', 'p');
@@ -54,30 +55,6 @@ class RecommendProductRepository extends EntityRepository
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
 
-    }
-
-    /**
-    * find 
-    *
-    * @return type
-    */
-    public function find($recommend_id)
-    {
-        try {
-            $qb = $this->createQueryBuilder('rp')
-                ->andWhere('rp.id = :id');
-
-            $product = $qb
-                ->getQuery()
-                ->setParameters(array(
-                    'id' => $recommend_id,
-                ))
-                ->getSingleResult();
-                
-            return $product;
-        } catch (NoResultException $e) {
-            throw new NotFoundHttpException();
-        }
     }
 
     /**

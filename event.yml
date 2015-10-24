@@ -1,3 +1,6 @@
 #
 # Event fock
 #
+
+eccube.event.render.product_detail.before:
+    - [showRecommendProduct, NORMAL]

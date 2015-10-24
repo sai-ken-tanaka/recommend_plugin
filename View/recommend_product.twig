@@ -1,0 +1,21 @@
+{#
+ This file is part of EC-CUBE
+ Copyright(c) 2000-2015 LOCKON CO.,LTD. All Rights Reserved.
+ http://www.lockon.co.jp/
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+#}
+
+<div class="item_gallery">
+    <h4>おすすめ商品</h4>
+    <ul class="row">
+        {% for RecommendProduct in RecommendProducts %}
+            <li class="col-sm-2 col-xs-4">
+                <a href="{{ url('product_detail', {id : RecommendProduct.Product.id}) }}" class="item_photo">
+                    <img src="{{ app.config.image_save_urlpath }}/{{ RecommendProduct.Product.mainFileName|no_image_product }}">
+                </a>
+                <p>{{ RecommendProduct.comment }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

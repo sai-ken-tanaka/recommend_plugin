@@ -6,6 +6,3 @@ service:
     - RecommendServiceProvider
 orm.path:
     - /Resource/doctrine
-#form:
-#    onSetData:
-#        Form\Type\PaymentFragmentForm
