@@ -1,0 +1,11 @@
+name: Recommend
+event: Recommend
+code: Recommend
+version: 1.0.0
+service:
+    - RecommendServiceProvider
+orm.path:
+    - /Resource/doctrine
+#form:
+#    onSetData:
+#        Form\Type\PaymentFragmentForm
